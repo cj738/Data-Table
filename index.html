@@ -13,14 +13,14 @@
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Age</th>
+                        <th>Address</th>
                     </tr>
                 </table>
             </div>
             <div class="tab tab-2">
                 First Name: <input type="text" name="fname" id="fname" >
                 Last Name: <input type="text" name="lname" id="lname" >
-                Age: <input type="number" name="age" id="age" step="1" >
+                Address: <input type="text" name="address" id="address" >
 
                 <button onclick="addHtmlTableRow()">Add</button>
                 <button onclick="editHtmlTableSelectedRow()">Edit</button>
@@ -28,15 +28,14 @@
             </div>
         </div>
         <script>
-            var rIndex, 
-                    table = document.getElementById("table");
+            var rIndex, table = document.getElementById("table");
             
-            function checkEmptyInput()
-            {
-                var isEmpty =true
+         function checkEmptyInput()
+         {
+                var isEmpty = false,
                     fname = document.getElementById("fname").value,
                     lname = document.getElementById("lname").value,
-                    age = document.getElementById("age").value;
+                    age = document.getElementById("address").value;
                     if(fname === ""){
                         alert("First Name Required");
                         isEmpty = true;
@@ -45,13 +44,14 @@
                         alert("Last Name Required");
                         isEmpty = true;
                     }
-                    if(age === ""){
-                        alert("Age Required");
+                    if(address === ""){
+                        alert("Address Required");
                         isEmpty = true;
                     }
                     return isEmpty;
             }
-            function addHtmlTableRow()
+            
+        function addHtmlTableRow()
             {
                 if(!checkEmptyInput()){
         var newRow = table.insertRow(table.length),
@@ -60,14 +60,14 @@
             cell3 = newRow.insertCell(2),
             fname = document.getElementById("fname").value,
             lname = document.getElementById("lname").value,
-            age = document.getElementById("age").value;
+            address = document.getElementById("address").value;
 
             cell1.innerHTML = fname;
             cell2.innerHTML = lname;
-            cell3.innerHTML = age;
+            cell3.innerHTML = address;
 
             selectedRowToInput();
-                }
+             }
         }
 
         function selectedRowToInput()
@@ -80,7 +80,7 @@
                 rIndex = this.rowIndex;
                 document.getElementById("fname").value = this.cells[0].innerHTML;
                 document.getElementById("lname").value = this.cells[1].innerHTML;
-                document.getElementById("age").value = this.cells[2].innerHTML;
+                document.getElementById("address").value = this.cells[2].innerHTML;
                 };
             }
         }
@@ -90,20 +90,22 @@
         {
            var fname = document.getElementById("fname").value,
                lname = document.getElementById("lname").value,
-                age = document.getElementById("age").value;
-            if(!checkEmptyInput()){
+                address = document.getElementById("address").value;
+            //if(!checkEmptyInput()){
             table.rows[rIndex].cells[0].innerHTML = fname;
             table.rows[rIndex].cells[1].innerHTML = lname;
-            table.rows[rIndex].cells[2].innerHTML = age;
-            }
+            table.rows[rIndex].cells[2].innerHTML = address;
+           // }
         }
 
         function removeSelectedRow()
         {
+           // if(!checkEmptyInput()){
             table.deleteRow(rIndex);
+        //}
             document.getElementById("fname").value = "";
             document.getElementById("lname").value = "";
-            document.getElementById("age").value = "";
+            document.getElementById("address").value = "";
         }
         </script>
     </body>
